@@ -1,3 +1,15 @@
+Introduction
+------------
+
+AaltoTLS is an implementation of the SSL/TLS network protocol written completely
+using C# and standard cryptographic libraries of .NET where relevant. It is
+designed to run fully on open source Mono implementation as well, working around
+possible bugs and incompatibilities if present. Focus of the project has been
+mainly on clean layered structure of the code and easy extensibility, not so
+much on performance or memory use. This is because the project has originally
+been part of a research project. So benchmarking might be required before using
+it in production environments.
+
 
 Compiling the source code
 -------------------------
