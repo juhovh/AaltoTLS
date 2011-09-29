@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<project name="AaltoTLS" default="init">
+  <property name="project.version" value="1.0" />
+  <property name="project.config" value="debug" />
+
+  <target name="init">
+    <call target="${project.config}" />
+  </target>
+
+  <target name="debug">
+    <property name="project.config" value="debug" />
+    <property name="build.debug" value="true" />
+    <property name="basedir.suffix" value="-debug" />
+    <call target="build" />
+  </target>
+
+  <target name="release">
+    <property name="project.config" value="release" />
+    <property name="build.debug" value="false" />
+    <property name="basedir.suffix" value="-release" />
+    <call target="build" />
+  </target>
+
+  <target name="build" description="compiles the source code">
+    <property name="build.dir" value="${project::get-base-directory()}/${project::get-name()}${basedir.suffix}" />
+    <mkdir dir="${build.dir}" />
+
+    <csc target="library" output="${build.dir}/AaltoTLS.PluginInterface.dll" debug="${build.debug}">
+      <sources basedir="${project::get-base-directory()}/AaltoTLS.PluginInterface">
+        <include name="**.cs" />
+      </sources>
+    </csc>
+
+    <csc target="library" output="${build.dir}/AaltoTLS.dll" debug="${build.debug}">
+      <sources basedir="${project::get-base-directory()}/AaltoTLS">
+        <include name="**.cs" />
+      </sources>
+      <references>
+        <include name="${build.dir}/AaltoTLS.PluginInterface.dll" />
+      </references>
+    </csc>
+
+    <foreach item="Folder" property="plugindir">
+      <in>
+        <items>
+          <include name="${project::get-base-directory()}/Plugins/*" />
+
+          <!-- exclude the root directory and possibly others -->
+          <exclude name="${project::get-base-directory()}/Plugins" />
+          <exclude name="${project::get-base-directory()}/Plugins/EllipticCurveCipherSuitePlugin" />
+        </items>
+      </in>
+      <do>
+        <csc target="library" output="${build.dir}/${path::get-file-name(plugindir)}.dll" debug="${build.debug}" unsafe="true">
+          <sources basedir="${plugindir}">
+            <include name="**.cs" />
+          </sources>
+          <references>
+            <include name="${build.dir}/AaltoTLS.PluginInterface.dll" />
+            <include name="${plugindir}/*.dll" />
+          </references>
+        </csc>
+        <copy todir="${build.dir}">
+          <fileset basedir="${plugindir}">
+            <include name="*.dll" />
+          </fileset>
+        </copy>
+      </do>
+    </foreach>
+
+    <foreach item="Folder" property="sampledir">
+      <in>
+        <items>
+          <include name="${project::get-base-directory()}/Samples/*" />
+
+          <!-- exclude the root directory and possibly others -->
+          <exclude name="${project::get-base-directory()}/Samples" />
+          <exclude name="${project::get-base-directory()}/Samples/ECCTest" />
+        </items>
+      </in>
+      <do>
+        <csc target="exe" output="${build.dir}/${path::get-file-name(sampledir)}.exe" debug="${build.debug}">
+          <sources basedir="${sampledir}">
+            <include name="**.cs" />
+          </sources>
+          <references>
+            <include name="System.Core.dll" />
+            <include name="${build.dir}/*.dll" />
+          </references>
+        </csc>
+      </do>
+    </foreach>
+
+    <foreach item="Folder" property="utildir">
+      <in>
+        <items>
+          <include name="${project::get-base-directory()}/Utils/*" />
+
+          <!-- exclude the root directory and possibly others -->
+          <exclude name="${project::get-base-directory()}/Utils" />
+        </items>
+      </in>
+      <do>
+        <csc target="exe" output="${build.dir}/${path::get-file-name(utildir)}.exe" debug="${build.debug}">
+          <sources basedir="${utildir}">
+            <include name="**.cs" />
+          </sources>
+          <references>
+            <include name="System.Security.dll" />
+            <include name="${build.dir}/*.dll" />
+          </references>
+        </csc>
+      </do>
+    </foreach>
+  </target>
+</project>

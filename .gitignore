@@ -1,0 +1,6 @@
+*.pidb
+*.userprefs
+*bin/
+*test-results/
+/AaltoTLS-release/
+/.DS_Store

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C033352F-FD43-4EFF-8EBF-997540C2EA37}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>AaltoTLS</RootNamespace>
+    <newfilesearch>OnLoadAutoInsert</newfilesearch>
+    <AssemblyName>AaltoTLS</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="KeyBlock.cs" />
+    <Compile Include="SecurityParameters.cs" />
+    <Compile Include="TLSStream.cs" />
+    <Compile Include="Authentication\CipherAlgorithmType.cs" />
+    <Compile Include="Authentication\HashAlgorithmType.cs" />
+    <Compile Include="Authentication\ExchangeAlgorithmType.cs" />
+    <Compile Include="Authentication\SslProtocols.cs" />
+    <Compile Include="SecureSession.cs" />
+    <Compile Include="RecordLayer\RecordHandler.cs" />
+    <Compile Include="RecordLayer\RecordStream.cs" />
+    <Compile Include="RecordLayer\RecordTooLargeException.cs" />
+    <Compile Include="RecordLayer\TLSRecordStream.cs" />
+    <Compile Include="HandshakeLayer\ClientHandshakeSession.cs" />
+    <Compile Include="HandshakeLayer\HandshakeSession.cs" />
+    <Compile Include="HandshakeLayer\ServerHandshakeSession.cs" />
+    <Compile Include="HandshakeLayer\Protocol\HandshakeCertificate.cs" />
+    <Compile Include="HandshakeLayer\Protocol\HandshakeCertificateRequest.cs" />
+    <Compile Include="HandshakeLayer\Protocol\HandshakeClientHello.cs" />
+    <Compile Include="HandshakeLayer\Protocol\HandshakeHelloVerifyRequest.cs" />
+    <Compile Include="HandshakeLayer\Protocol\HandshakeMessage.cs" />
+    <Compile Include="HandshakeLayer\Protocol\HandshakeMessageType.cs" />
+    <Compile Include="HandshakeLayer\Protocol\HandshakeRandom.cs" />
+    <Compile Include="HandshakeLayer\Protocol\HandshakeServerHello.cs" />
+    <Compile Include="HandshakeLayer\Protocol\HandshakeStream.cs" />
+    <Compile Include="Alerts\Alert.cs" />
+    <Compile Include="Alerts\AlertDescription.cs" />
+    <Compile Include="Alerts\AlertLevel.cs" />
+    <Compile Include="Alerts\AlertException.cs" />
+    <Compile Include="RecordLayer\Record.cs" />
+    <Compile Include="HandshakeLayer\TLSHandshakePacketizer.cs" />
+    <Compile Include="HandshakeLayer\IHandshakePacketizer.cs" />
+    <Compile Include="ConnectionState.cs" />
+    <Compile Include="HandshakeLayer\Protocol\HelloExtension.cs" />
+    <Compile Include="HandshakeLayer\Protocol\HelloExtensionType.cs" />
+    <Compile Include="HandshakeLayer\Protocol\HelloSignatureAlgorithmsExtension.cs" />
+    <Compile Include="AsyncHandshakeResult.cs" />
+    <Compile Include="AsyncSendDataResult.cs" />
+    <Compile Include="AsyncReceiveDataResult.cs" />
+    <Compile Include="RecordLayer\RecordType.cs" />
+    <Compile Include="AsyncGenericResult.cs" />
+    <Compile Include="HandshakeLayer\HandshakeState.cs" />
+    <Compile Include="RecordLayer\AsyncSendRecordsResult.cs" />
+    <Compile Include="RecordLayer\AsyncReceiveRecordsResult.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AaltoTLS.PluginInterface\AaltoTLS.PluginInterface.csproj">
+      <Project>{D0645774-D12E-4435-8EFB-6326F9DDDA4F}</Project>
+      <Name>AaltoTLS.PluginInterface</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Authentication\" />
+    <Folder Include="RecordLayer\" />
+    <Folder Include="HandshakeLayer\" />
+    <Folder Include="HandshakeLayer\Protocol\" />
+    <Folder Include="Alerts\" />
+  </ItemGroup>
+</Project>

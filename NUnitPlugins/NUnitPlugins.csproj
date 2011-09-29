@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5E471F4A-F499-423E-BF0F-B4F8535270CB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>NUnitPlugins</RootNamespace>
+    <AssemblyName>NUnitPlugins</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="nunit.core, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77" />
+    <Reference Include="nunit.framework, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ARCFourCipherSuitePluginTest.cs" />
+    <Compile Include="BaseCipherSuitePluginTest.cs" />
+    <Compile Include="ARCFourCryptoTransformTest.cs" />
+    <Compile Include="BulkCipherAlgorithmARCFourTest.cs" />
+    <Compile Include="BulkCipherAlgorithmDESTest.cs" />
+    <Compile Include="BulkCipherAlgorithm3DESTest.cs" />
+    <Compile Include="BulkCipherAlgorithmAESTest.cs" />
+    <Compile Include="KeyExchangeAlgorithmRSATest.cs" />
+    <Compile Include="SignatureAlgorithmDSATest.cs" />
+    <Compile Include="BulkCipherAlgorithmAesGcmTest.cs" />
+    <Compile Include="BulkCipherAlgorithmAriaGcmTest.cs" />
+    <Compile Include="PseudoRandomFunctionTLSGenericTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AaltoTLS.PluginInterface\AaltoTLS.PluginInterface.csproj">
+      <Project>{D0645774-D12E-4435-8EFB-6326F9DDDA4F}</Project>
+      <Name>AaltoTLS.PluginInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Plugins\ARCFourCipherSuitePlugin\ARCFourCipherSuitePlugin.csproj">
+      <Project>{E08C0248-F57B-4D41-851E-E879E77C133A}</Project>
+      <Name>ARCFourCipherSuitePlugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Plugins\ARIACipherSuitePlugin\ARIACipherSuitePlugin.csproj">
+      <Project>{E07D13DA-3CD4-4F6F-BBD2-A7B3AFB34702}</Project>
+      <Name>ARIACipherSuitePlugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Plugins\BaseCipherSuitePlugin\BaseCipherSuitePlugin.csproj">
+      <Project>{CE14D5EC-C866-409A-AB58-EADBCFC14F22}</Project>
+      <Name>BaseCipherSuitePlugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Plugins\BigIntegerCipherSuitePlugin\BigIntegerCipherSuitePlugin.csproj">
+      <Project>{DD5AAA25-8166-4A7B-8CF9-CE144D98D28C}</Project>
+      <Name>BigIntegerCipherSuitePlugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Plugins\BouncyCastleCipherSuitePlugin\BouncyCastleCipherSuitePlugin.csproj">
+      <Project>{1EF9C0F1-E129-47F8-992A-0D712BFB7431}</Project>
+      <Name>BouncyCastleCipherSuitePlugin</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

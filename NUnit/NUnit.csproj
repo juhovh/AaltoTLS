@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{58C5EEFE-9F06-42FF-A8F9-A50F66CA03A3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>NUnit</RootNamespace>
+    <AssemblyName>NUnit</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="nunit.core, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77" />
+    <Reference Include="nunit.framework, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="RecordHandlerTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AaltoTLS\AaltoTLS.csproj">
+      <Project>{C033352F-FD43-4EFF-8EBF-997540C2EA37}</Project>
+      <Name>AaltoTLS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AaltoTLS.PluginInterface\AaltoTLS.PluginInterface.csproj">
+      <Project>{D0645774-D12E-4435-8EFB-6326F9DDDA4F}</Project>
+      <Name>AaltoTLS.PluginInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Plugins\BaseCipherSuitePlugin\BaseCipherSuitePlugin.csproj">
+      <Project>{CE14D5EC-C866-409A-AB58-EADBCFC14F22}</Project>
+      <Name>BaseCipherSuitePlugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Plugins\BigIntegerCipherSuitePlugin\BigIntegerCipherSuitePlugin.csproj">
+      <Project>{DD5AAA25-8166-4A7B-8CF9-CE144D98D28C}</Project>
+      <Name>BigIntegerCipherSuitePlugin</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
